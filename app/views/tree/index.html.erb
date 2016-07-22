@@ -19,7 +19,7 @@
 
   <% @list_objects.contents.each do |content|%>
     <tr>
-      <td>File <%= content.key %></td>
+      <td>File <%= link_to content.key, download_tree_index_path(key: content.key) %></td>
     </tr>
   <% end %>
 </table>

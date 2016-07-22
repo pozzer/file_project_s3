@@ -13,12 +13,38 @@ class TreeController  < ApplicationController
     render :index
   end
 
+  def download
+    key = params[:key]
+    file_name = key.split("/").last
+    object = @s3.get_object({bucket:@bucket_name, key: key})
+    binding.pry
+
+    #File.open(file_name, 'wb') do |file|
+#    #  @s3.get_object({bucket:@bucket_name, key: key}) do |chunk|
+#    #    file.write(chunk)
+#    #  end
+#    #end
+#
+#
+    #File.open('filename', 'wb') do |file|
+    #  reap = @s3.get_object({bucket:@bucket_name, key: key}, target: file)
+    #end
+    send_data object.body,  :filename => file_name
+  end
+
   private
+
+
     def get_s3
+      get_bucket
       @s3 = Aws::S3::Client.new(
         region: 'us-east-1',
-        access_key_id: 'AKIAIINULSJCBNLPUA7A',
-        secret_access_key: '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'
+        access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+        secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
       )
+    end
+
+    def get_bucket
+      @bucket_name = 'mead-productions'
     end
 end
