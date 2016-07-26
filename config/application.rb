@@ -11,11 +11,8 @@ module FileProjectS3
 
     Aws.config.update({
       region: 'us-east-1',
-      credentials: Aws::Credentials.new('AKIAIINULSJCBNLPUA7A', 'eHUZihH3KezvjcjLx0cfqOxL3B60Zqrw9lYZZ172'),
-      #:s3 => { :region => 'us-east-2' }
+      credentials: Aws::Credentials.new('AKIAJNMD3L6U6MSHPTVA', 'zM+eE8qbgIMSd4WQaLJlT3gTIum0GHO97dkTZWk8')
     })
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+
   end
 end
