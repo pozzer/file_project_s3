@@ -1,25 +1,28 @@
-<h1><%= "#{@list_objects.name}/#{@list_objects.prefix}"%></h1>
-<table>
-  <thead>
-    <th>
-    </th>
-  </thead>
-    <%unless @list_objects.prefix.split("/")[0..-2].blank? %>
-    <tr>
-      <td>
-        <%= link_to "../", tree_path("#{@list_objects.prefix.split("/")[0..-2].join("/")}") %>
-      </td>
-    </tr>
-    <%end %>
-  <% @list_objects.common_prefixes.each do |folder|%>
-    <tr>
-      <td><%= link_to folder.prefix.split("/").last, tree_path("#{folder.prefix}") %></td>
-    </tr>
-  <% end %>
+<h3><%= "#{@list_objects.name}/#{@list_objects.prefix}"%></h3>
+<div class="panel panel-info">
+  <div class="panel-heading">SJS</div>
+  <table>
+    <thead>
+      <th>
+      </th>
+    </thead>
+      <%unless @list_objects.prefix.split("/")[0..-2].blank? %>
+      <tr>
+        <td>
+          <%= link_to "../", tree_path("#{@list_objects.prefix.split("/")[0..-2].join("/")}") %>
+        </td>
+      </tr>
+      <%end %>
+    <% @list_objects.common_prefixes.each do |folder|%>
+      <tr>
+        <td><%= link_to folder.prefix.split("/").last, tree_path("#{folder.prefix}") %></td>
+      </tr>
+    <% end %>
 
-  <% @list_objects.contents.each do |content|%>
-    <tr>
-      <td>File <%= link_to content.key, download_tree_index_path(key: content.key) %></td>
-    </tr>
-  <% end %>
-</table>
+    <% @list_objects.contents.each do |content|%>
+      <tr>
+        <td>File <%= link_to content.key, download_tree_index_path(key: content.key) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
